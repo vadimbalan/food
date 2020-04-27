@@ -19,6 +19,15 @@ $f3->route('GET /', function()
     echo $view->render('views/home.html');
 });
 
+// Breakfast route
+$f3->route('GET /breakfast', function()
+{
+    //echo '<h1>Welcome to my Breakfast Page</h1>';
+
+    $view = new Template();
+    echo $view->render('views/bfast.html');
+});
+
 // Run F3
 $f3->run();
 
