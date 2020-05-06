@@ -38,10 +38,19 @@
             <label class="col-sm-2 control-label">Select a meal</label>
 
             <div class="col-sm-4">
+                <repeat group="{{ @meals }}" value="{{ @meal }}">
+                    <input type="radio" name="meal" id="{{ @meal }}" value="{{ @meal }}"> {{ ucfirst(@meal) }}
+                    </input><br>
+                </repeat>
+            </div>
+
+            <!--
+            <div class="col-sm-4">
                 <input type="radio" name="meal" id="breakfast" value="breakfast"> Breakfast</input><br>
                 <input type="radio" name="meal" id="lunch" value="lunch"> Lunch</input><br>
                 <input type="radio" name="meal" id="dinner" value="dinner"> Dinner</input>
             </div>
+            -->
         </div>
 
         <div class="col-xs-3 ">

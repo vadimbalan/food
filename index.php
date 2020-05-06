@@ -9,6 +9,8 @@ session_start();
 
 // Require the autoload file
 require_once("vendor/autoload.php");
+require_once("model/data-layer.php");
+
 
 // Instantiate the F3 Base Class
 $f3 = Base::instance();
@@ -26,6 +28,7 @@ $f3->route('GET /', function()
 $f3->route('GET|POST /order', function($f3)
 {
     //echo '<h1>Welcome to my Food Page</h1>';
+    $meals = getMeals();
 
     // If the form has been submitted
     if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -34,7 +37,6 @@ $f3->route('GET|POST /order', function($f3)
         //array(2) { ["food"]=> string(5) "Tacos" ["meal"]=> string(2) "on" }
 
         // Validate the data
-        $meals = array("breakfast", "lunch", "dinner");
         if (empty($_POST['food']))
         {
             echo "<p>Please enter a food</p>";
@@ -55,6 +57,9 @@ $f3->route('GET|POST /order', function($f3)
             session_destroy();
         }
     }
+
+    $f3->set('meals', $meals);
+
     $view = new Template();
     echo $view->render('views/orderForm.html');
 });
